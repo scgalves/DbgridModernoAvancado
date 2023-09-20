@@ -3,7 +3,7 @@ object ViewPrincipal: TViewPrincipal
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'DBGrid Moderno e Avan'#231'ado'
-  ClientHeight = 482
+  ClientHeight = 621
   ClientWidth = 966
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -14,118 +14,9 @@ object ViewPrincipal: TViewPrincipal
   Position = poMainFormCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  OnPaint = FormPaint
   OnShow = FormShow
   TextHeight = 15
-  object DBGrid1: TDBGrid
-    AlignWithMargins = True
-    Left = 12
-    Top = 109
-    Width = 942
-    Height = 165
-    Hint = 'Clique no t'#237'tulo da coluna para ordenar'
-    Margins.Left = 12
-    Margins.Top = 0
-    Margins.Right = 12
-    Margins.Bottom = 6
-    Align = alTop
-    DataSource = DataSource1
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 0
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -12
-    TitleFont.Name = 'Segoe UI'
-    TitleFont.Style = []
-    OnDrawColumnCell = DBGrid1DrawColumnCell
-    OnTitleClick = DBGrid1TitleClick
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'SYMBOL'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'CO_NAME'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'EXCHANGE'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'CUR_PRICE'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'YRL_HIGH'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'YRL_LOW'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'P_E_RATIO'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'BETA'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'PROJ_GRTH'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'INDUSTRY'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'PRICE_CHG'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'SAFETY'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'RATING'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'RANK'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'OUTLOOK'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'RCMNDATION'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'RISK'
-        Visible = True
-      end>
-  end
   object grdTopo: TGridPanel
     AlignWithMargins = True
     Left = 0
@@ -135,7 +26,7 @@ object ViewPrincipal: TViewPrincipal
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
-    Margins.Bottom = 20
+    Margins.Bottom = 16
     Align = alTop
     BevelOuter = bvNone
     ColumnCollection = <
@@ -162,7 +53,8 @@ object ViewPrincipal: TViewPrincipal
       item
         Value = 100.000000000000000000
       end>
-    TabOrder = 1
+    TabOrder = 0
+    ExplicitWidth = 962
     object grpPesquisar: TGroupBox
       AlignWithMargins = True
       Left = 15
@@ -176,10 +68,7 @@ object ViewPrincipal: TViewPrincipal
       Align = alClient
       Caption = 'Pesquisar'
       TabOrder = 0
-      ExplicitLeft = 28
-      ExplicitTop = -40
-      ExplicitWidth = 185
-      ExplicitHeight = 105
+      ExplicitWidth = 706
       object grdPesquisar: TGridPanel
         Left = 2
         Top = 17
@@ -195,7 +84,7 @@ object ViewPrincipal: TViewPrincipal
             Value = 33.333333333333340000
           end
           item
-            Value = 33.333333333333340000
+            Value = 33.333333333333310000
           end>
         ControlCollection = <
           item
@@ -218,8 +107,7 @@ object ViewPrincipal: TViewPrincipal
             Value = 100.000000000000000000
           end>
         TabOrder = 0
-        ExplicitWidth = 181
-        ExplicitHeight = 86
+        ExplicitWidth = 702
         object edtTexto: TLabeledEdit
           AlignWithMargins = True
           Left = 12
@@ -238,8 +126,7 @@ object ViewPrincipal: TViewPrincipal
           TabOrder = 0
           Text = ''
           OnChange = edtTextoChange
-          ExplicitTop = 32
-          ExplicitWidth = 164
+          ExplicitWidth = 210
         end
         object grd1: TGridPanel
           AlignWithMargins = True
@@ -276,9 +163,8 @@ object ViewPrincipal: TViewPrincipal
               Value = 100.000000000000000000
             end>
           TabOrder = 1
-          ExplicitLeft = 228
-          ExplicitWidth = 109
-          ExplicitHeight = 86
+          ExplicitLeft = 274
+          ExplicitWidth = 154
           object rdbLocalizar: TRadioButton
             AlignWithMargins = True
             Left = 0
@@ -295,8 +181,7 @@ object ViewPrincipal: TViewPrincipal
             TabOrder = 0
             TabStop = True
             OnClick = rdbLocalizarClick
-            ExplicitTop = 36
-            ExplicitWidth = 54
+            ExplicitWidth = 77
           end
           object rdbFiltrar: TRadioButton
             AlignWithMargins = True
@@ -312,9 +197,8 @@ object ViewPrincipal: TViewPrincipal
             Caption = 'Filtrar'
             TabOrder = 1
             OnClick = rdbFiltrarClick
-            ExplicitLeft = 58
-            ExplicitTop = 36
-            ExplicitWidth = 43
+            ExplicitLeft = 81
+            ExplicitWidth = 65
           end
         end
         object pnlCombo: TPanel
@@ -325,9 +209,8 @@ object ViewPrincipal: TViewPrincipal
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
-          ExplicitLeft = 377
-          ExplicitWidth = 188
-          ExplicitHeight = 86
+          ExplicitLeft = 468
+          ExplicitWidth = 234
           object lblCombo: TLabel
             AlignWithMargins = True
             Left = 12
@@ -339,7 +222,6 @@ object ViewPrincipal: TViewPrincipal
             Margins.Right = 12
             Align = alTop
             Caption = 'Campo'
-            ExplicitTop = 16
             ExplicitWidth = 39
           end
           object cbbCampo: TComboBox
@@ -356,35 +238,45 @@ object ViewPrincipal: TViewPrincipal
             Style = csOwnerDrawFixed
             TabOrder = 0
             OnChange = cbbCampoChange
-            ExplicitTop = 34
-            ExplicitWidth = 164
+            ExplicitWidth = 210
           end
         end
       end
     end
   end
   object grdRodape: TGridPanel
+    AlignWithMargins = True
     Left = 0
-    Top = 417
+    Top = 568
     Width = 966
-    Height = 65
+    Height = 53
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
     Align = alBottom
     BevelOuter = bvNone
     ColumnCollection = <
       item
-        Value = 20.000000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 20.000000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 20.000000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 20.000000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 20.000000000000000000
+        Value = 14.285714285714290000
+      end
+      item
+        Value = 14.285714285714290000
+      end
+      item
+        Value = 14.285714285714270000
       end>
     ControlCollection = <
       item
@@ -393,30 +285,52 @@ object ViewPrincipal: TViewPrincipal
         Row = 0
       end
       item
-        Column = 2
-        Control = edtSomaCurPrice
+        Column = 1
+        Control = pnlQtdeRegistros
         Row = 0
       end
       item
-        Column = 1
-        Control = edtQtdeRegistros
+        Column = 2
+        Control = pnlSomaCUR_PRICE
+        Row = 0
+      end
+      item
+        Column = 4
+        Control = pnlSomaYRL_LOW
+        Row = 0
+      end
+      item
+        Column = 3
+        Control = pnlSomaYRL_HIGH
+        Row = 0
+      end
+      item
+        Column = 5
+        Control = pnlSomaP_E_RATIO
+        Row = 0
+      end
+      item
+        Column = 6
+        Control = pnlSomaBETA
         Row = 0
       end>
     RowCollection = <
       item
         Value = 100.000000000000000000
       end>
-    TabOrder = 2
-    ExplicitTop = 416
+    TabOrder = 1
+    ExplicitTop = 567
+    ExplicitWidth = 962
     object dbnvgr1: TDBNavigator
       AlignWithMargins = True
-      Left = 16
-      Top = 18
-      Width = 174
+      Left = 4
+      Top = 12
+      Width = 130
       Height = 29
-      Margins.Left = 16
-      Margins.Top = 18
-      Margins.Bottom = 18
+      Margins.Left = 4
+      Margins.Top = 12
+      Margins.Right = 4
+      Margins.Bottom = 12
       DataSource = DataSource1
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
@@ -436,61 +350,424 @@ object ViewPrincipal: TViewPrincipal
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      ExplicitTop = 20
-      ExplicitWidth = 145
-      ExplicitHeight = 25
+      ExplicitWidth = 129
     end
-    object edtSomaCurPrice: TDBLabeledEdit
-      AlignWithMargins = True
-      Left = 487
-      Top = 22
-      Width = 90
-      Height = 23
-      Margins.Top = 22
-      Margins.Bottom = 20
-      TabStop = False
-      Align = alRight
-      BevelInner = bvNone
+    object pnlQtdeRegistros: TPanel
+      Left = 138
+      Top = 0
+      Width = 138
+      Height = 53
+      Align = alClient
       BevelOuter = bvNone
-      BorderStyle = bsNone
-      DataField = 'SumCurPrice'
-      DataSource = DataSource1
-      ReadOnly = True
       TabOrder = 1
-      EditLabel.Width = 95
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Soma CUR_PRICE:'
-      EditLabel.Layout = tlCenter
-      LabelPosition = lpLeft
-      ExplicitLeft = 485
+      ExplicitLeft = 137
+      object lblQtdeRegistros: TLabel
+        AlignWithMargins = True
+        Left = 12
+        Top = 8
+        Width = 114
+        Height = 15
+        Margins.Left = 12
+        Margins.Top = 8
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Qtde. Registros'
+        ExplicitWidth = 80
+      end
+      object dbtxtQtdeRegistros: TDBText
+        AlignWithMargins = True
+        Left = 12
+        Top = 25
+        Width = 114
+        Height = 17
+        Margins.Left = 12
+        Margins.Top = 2
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        DataField = 'CountSymbol'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 24
+        ExplicitTop = 40
+        ExplicitWidth = 65
+      end
     end
-    object edtQtdeRegistros: TDBLabeledEdit
-      AlignWithMargins = True
-      Left = 316
-      Top = 22
-      Width = 67
-      Height = 23
-      Margins.Top = 22
-      Margins.Bottom = 20
-      Align = alRight
+    object pnlSomaCUR_PRICE: TPanel
+      Left = 276
+      Top = 0
+      Width = 138
+      Height = 53
+      Align = alClient
       BevelOuter = bvNone
-      BorderStyle = bsNone
-      DataField = 'CountSymbol'
-      DataSource = DataSource1
-      ReadOnly = True
       TabOrder = 2
-      EditLabel.Width = 51
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Registros:'
-      EditLabel.Layout = tlCenter
-      LabelPosition = lpLeft
-      ExplicitLeft = 413
-      ExplicitTop = 3
-      ExplicitHeight = 59
+      ExplicitLeft = 275
+      ExplicitWidth = 137
+      object lblSomaCUR_PRICE: TLabel
+        AlignWithMargins = True
+        Left = 12
+        Top = 8
+        Width = 114
+        Height = 15
+        Margins.Left = 12
+        Margins.Top = 8
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Total CUR_PRICE'
+        ExplicitWidth = 87
+      end
+      object dbtxtSomaCUR_PRICE: TDBText
+        AlignWithMargins = True
+        Left = 12
+        Top = 25
+        Width = 114
+        Height = 17
+        Margins.Left = 12
+        Margins.Top = 2
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        DataField = 'SomaCUR_PRICE'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 24
+        ExplicitTop = 40
+        ExplicitWidth = 65
+      end
+    end
+    object pnlSomaYRL_LOW: TPanel
+      Left = 552
+      Top = 0
+      Width = 138
+      Height = 53
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 3
+      ExplicitLeft = 550
+      ExplicitWidth = 137
+      object lblSomaYRL_LOW: TLabel
+        AlignWithMargins = True
+        Left = 12
+        Top = 8
+        Width = 114
+        Height = 15
+        Margins.Left = 12
+        Margins.Top = 8
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Total YRL_LOW'
+        ExplicitWidth = 79
+      end
+      object dbtxtSomaYRL_LOW: TDBText
+        AlignWithMargins = True
+        Left = 12
+        Top = 25
+        Width = 114
+        Height = 17
+        Margins.Left = 12
+        Margins.Top = 2
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        DataField = 'SomaYRL_LOW'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 24
+        ExplicitTop = 40
+        ExplicitWidth = 65
+      end
+    end
+    object pnlSomaYRL_HIGH: TPanel
+      Left = 414
+      Top = 0
+      Width = 138
+      Height = 53
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 4
+      ExplicitLeft = 412
+      object lblSomaYRL_HIGH: TLabel
+        AlignWithMargins = True
+        Left = 12
+        Top = 8
+        Width = 114
+        Height = 15
+        Margins.Left = 12
+        Margins.Top = 8
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Total YRL_HIGH'
+        ExplicitWidth = 82
+      end
+      object dbtxtSomaYRL_HIGH: TDBText
+        AlignWithMargins = True
+        Left = 12
+        Top = 25
+        Width = 114
+        Height = 17
+        Margins.Left = 12
+        Margins.Top = 2
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        DataField = 'SomaYRL_HIGH'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 24
+        ExplicitTop = 40
+        ExplicitWidth = 65
+      end
+    end
+    object pnlSomaP_E_RATIO: TPanel
+      Left = 690
+      Top = 0
+      Width = 138
+      Height = 53
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 5
+      ExplicitLeft = 687
+      object lblSomaP_E_RATIO: TLabel
+        AlignWithMargins = True
+        Left = 12
+        Top = 8
+        Width = 114
+        Height = 15
+        Margins.Left = 12
+        Margins.Top = 8
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Total P_E_RATIO'
+        ExplicitWidth = 83
+      end
+      object dbtxtSomaP_E_RATIO: TDBText
+        AlignWithMargins = True
+        Left = 12
+        Top = 25
+        Width = 114
+        Height = 17
+        Margins.Left = 12
+        Margins.Top = 2
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        DataField = 'SomaP_E_RATIO'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 24
+        ExplicitTop = 40
+        ExplicitWidth = 65
+      end
+    end
+    object pnlSomaBETA: TPanel
+      Left = 828
+      Top = 0
+      Width = 138
+      Height = 53
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 6
+      ExplicitLeft = 825
+      ExplicitWidth = 137
+      object lblSomaBETA: TLabel
+        AlignWithMargins = True
+        Left = 12
+        Top = 8
+        Width = 114
+        Height = 15
+        Margins.Left = 12
+        Margins.Top = 8
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Total BETA'
+        ExplicitWidth = 54
+      end
+      object dbtxtSomaBETA: TDBText
+        AlignWithMargins = True
+        Left = 12
+        Top = 25
+        Width = 114
+        Height = 17
+        Margins.Left = 12
+        Margins.Top = 2
+        Margins.Right = 12
+        Margins.Bottom = 0
+        Align = alTop
+        DataField = 'SomaBETA'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitLeft = 24
+        ExplicitTop = 40
+        ExplicitWidth = 65
+      end
+    end
+  end
+  object pnlDados: TPanel
+    Left = 0
+    Top = 105
+    Width = 966
+    Height = 463
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 2
+    ExplicitWidth = 962
+    ExplicitHeight = 462
+    object DBGrid1: TDBGrid
+      AlignWithMargins = True
+      Left = 12
+      Top = 0
+      Width = 942
+      Height = 443
+      Hint = 'Clique no t'#237'tulo da coluna para ordenar'
+      Margins.Left = 12
+      Margins.Top = 0
+      Margins.Right = 12
+      Margins.Bottom = 20
+      Align = alClient
+      DataSource = DataSource1
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Segoe UI'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGrid1DrawColumnCell
+      OnTitleClick = DBGrid1TitleClick
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'SYMBOL'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CO_NAME'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'EXCHANGE'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CUR_PRICE'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'YRL_HIGH'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'YRL_LOW'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'P_E_RATIO'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'BETA'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PROJ_GRTH'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'INDUSTRY'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRICE_CHG'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'SAFETY'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'RATING'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'RANK'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'OUTLOOK'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'RCMNDATION'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'RISK'
+          Visible = True
+        end>
     end
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
+    OnDataChange = DataSource1DataChange
     Left = 424
     Top = 264
   end
@@ -592,6 +869,7 @@ object ViewPrincipal: TViewPrincipal
     IndexDefs = <>
     Params = <>
     StoreDefs = True
+    AfterOpen = ClientDataSet1AfterOpen
     Left = 512
     Top = 264
     object ClientDataSet1SYMBOL: TStringField
@@ -633,6 +911,7 @@ object ViewPrincipal: TViewPrincipal
     end
     object ClientDataSet1PRICE_CHG: TSmallintField
       FieldName = 'PRICE_CHG'
+      DisplayFormat = ',0.00'
     end
     object ClientDataSet1SAFETY: TSmallintField
       FieldName = 'SAFETY'
@@ -655,8 +934,8 @@ object ViewPrincipal: TViewPrincipal
       FieldName = 'RISK'
       Size = 4
     end
-    object ClientDataSet1SumCurPrice: TAggregateField
-      FieldName = 'SumCurPrice'
+    object ClientDataSet1SomaCUR_PRICE: TAggregateField
+      FieldName = 'SomaCUR_PRICE'
       Active = True
       DisplayName = ''
       DisplayFormat = ',0.00'
@@ -669,5 +948,41 @@ object ViewPrincipal: TViewPrincipal
       DisplayFormat = ',0'
       Expression = 'count(symbol)'
     end
+    object ClientDataSet1SomaYRL_HIGH: TAggregateField
+      FieldName = 'SomaYRL_HIGH'
+      Active = True
+      DisplayName = ''
+      DisplayFormat = ',0.00'
+      Expression = 'sum(yrl_high)'
+    end
+    object ClientDataSet1SomaYRL_LOW: TAggregateField
+      FieldName = 'SomaYRL_LOW'
+      Active = True
+      DisplayName = ''
+      DisplayFormat = ',0.00'
+      Expression = 'sum(yrl_low)'
+    end
+    object ClientDataSet1SomaP_E_RATIO: TAggregateField
+      FieldName = 'SomaP_E_RATIO'
+      Active = True
+      DisplayName = ''
+      DisplayFormat = ',0.00'
+      Expression = 'sum(p_e_ratio)'
+    end
+    object ClientDataSet1SomaBETA: TAggregateField
+      FieldName = 'SomaBETA'
+      Active = True
+      DisplayName = ''
+      DisplayFormat = ',0.00'
+      Expression = 'sum(beta)'
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '*.xml'
+    Filter = 'Arquivo|master.xml'
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Title = 'Selecione o arquivo com os dados'
+    Left = 608
+    Top = 264
   end
 end

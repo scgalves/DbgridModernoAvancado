@@ -5,13 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Data.DB, Datasnap.DBClient, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.Mask;
+  Vcl.Mask, MidasLib;
 
 type
   TViewPrincipal = class(TForm)
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
-    DBGrid1: TDBGrid;
     grdTopo: TGridPanel;
     grdRodape: TGridPanel;
     dbnvgr1: TDBNavigator;
@@ -32,9 +31,7 @@ type
     ClientDataSet1OUTLOOK: TSmallintField;
     ClientDataSet1RCMNDATION: TStringField;
     ClientDataSet1RISK: TStringField;
-    ClientDataSet1SumCurPrice: TAggregateField;
-    edtSomaCurPrice: TDBLabeledEdit;
-    edtQtdeRegistros: TDBLabeledEdit;
+    ClientDataSet1SomaCUR_PRICE: TAggregateField;
     ClientDataSet1CountSymbol: TAggregateField;
     grpPesquisar: TGroupBox;
     grdPesquisar: TGridPanel;
@@ -45,24 +42,52 @@ type
     pnlCombo: TPanel;
     lblCombo: TLabel;
     cbbCampo: TComboBox;
+    pnlQtdeRegistros: TPanel;
+    lblQtdeRegistros: TLabel;
+    dbtxtQtdeRegistros: TDBText;
+    pnlSomaCUR_PRICE: TPanel;
+    lblSomaCUR_PRICE: TLabel;
+    dbtxtSomaCUR_PRICE: TDBText;
+    pnlSomaYRL_LOW: TPanel;
+    lblSomaYRL_LOW: TLabel;
+    dbtxtSomaYRL_LOW: TDBText;
+    ClientDataSet1SomaYRL_HIGH: TAggregateField;
+    ClientDataSet1SomaYRL_LOW: TAggregateField;
+    ClientDataSet1SomaP_E_RATIO: TAggregateField;
+    pnlSomaYRL_HIGH: TPanel;
+    lblSomaYRL_HIGH: TLabel;
+    dbtxtSomaYRL_HIGH: TDBText;
+    pnlSomaP_E_RATIO: TPanel;
+    lblSomaP_E_RATIO: TLabel;
+    dbtxtSomaP_E_RATIO: TDBText;
+    pnlSomaBETA: TPanel;
+    lblSomaBETA: TLabel;
+    dbtxtSomaBETA: TDBText;
+    ClientDataSet1SomaBETA: TAggregateField;
+    OpenDialog1: TOpenDialog;
+    pnlDados: TPanel;
+    DBGrid1: TDBGrid;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGrid1TitleClick(Column: TColumn);
-    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State:
-      TGridDrawState);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure edtTextoChange(Sender: TObject);
     procedure cbbCampoChange(Sender: TObject);
     procedure rdbLocalizarClick(Sender: TObject);
     procedure rdbFiltrarClick(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure ClientDataSet1AfterOpen(DataSet: TDataSet);
+    procedure FormPaint(Sender: TObject);
   private
-//    const
-//      C_GREEN_MID_LIGHT: TColor = $0062AD05;
     FOldColumn: TColumn;
-    procedure EstiloDbgrid(const ADbgrid: TDBGrid);
+    procedure EstiloDbgrid;
   public
     { Public declarations }
   end;
+
+type
+  TDBGridCustom = class(TCustomDBGrid);
 
 var
   ViewPrincipal: TViewPrincipal;
@@ -73,20 +98,60 @@ implementation
 
 procedure TViewPrincipal.cbbCampoChange(Sender: TObject);
 begin
-  edtTextoChange(edtTexto);
-  edtTexto.SetFocus;
+  Self.edtTextoChange(Self.edtTexto);
+//  case Self.cbbCampo.ItemIndex of
+//    3: // CUR_PRICE
+//      begin
+//        lblSum_.Caption := 'Soma ' + Self.cbbCampo.Text;
+//        dbtxtSum_.DataField := Self.cbbCampo.Text;
+//        Self.ClientDataSet1Sum_.Expression := Format('sum(%)', [Self.cbbCampo.Text]);
+//        Self.ClientDataSet1Sum_.Active := True;
+//      end;
+//  end;
+
+
+  Self.edtTexto.SetFocus;
+end;
+
+procedure TViewPrincipal.ClientDataSet1AfterOpen(DataSet: TDataSet);
+begin
+//  Self.ClientDataSet1.First;
+  // Aumenta a altura das linhas da grid
+  TDBGridCustom(Self.DBGrid1).DefaultRowHeight := 30;
+//  TDBGridCustom(Self.DBGrid1).ClientHeight := (30 * TDBGridCustom(Self.DBGrid1).RowCount) + 30;
+end;
+
+procedure TViewPrincipal.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+  // Aumenta a altura das linhas da grid
+//  TDBGridCustom(Self.DBGrid1).DefaultRowHeight := 30;
+//  TDBGridCustom(Self.DBGrid1).ClientHeight := (30 * TDBGridCustom(Self.DBGrid1).RowCount) + 30;
 end;
 
 procedure TViewPrincipal.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
   State: TGridDrawState);
 begin
   if not (Sender as TDBGrid).DataSource.DataSet.RecNo mod 2 = 0 then // Se ao dividir por 2, o resto <> 0
-    if not (gdSelected in State) then // se a célula não está selecionada
-    begin
-      (Sender as TDBGrid).Canvas.Brush.Color := cl3DLight; //clSilver; // define uma cor de fundo da linha
-      (Sender as TDBGrid).Canvas.FillRect(Rect); // pinta a célula
-      (Sender as TDBGrid).DefaultDrawDataCell(Rect, Column.Field, State); // pinta o texto padrão
-    end;
+    (Sender as TDBGrid).Canvas.Brush.Color := cl3DLight
+  else
+    (Sender as TDBGrid).Canvas.Brush.Color := clWhite;
+  // Cor da seleção
+  if (gdSelected in State) then
+  begin
+    (Sender as TDBGrid).Canvas.Brush.Color := clGray; // Cor de fundo da linha
+    (Sender as TDBGrid).Canvas.Font.Color := clWhite; //clSilver; // define uma cor de fundo da linha
+    (Sender as TDBGrid).Canvas.Font.Style := [fsBold];
+  end;
+
+  (Sender as TDBGrid).Canvas.FillRect(Rect); // pinta a célula
+  (Sender as TDBGrid).DefaultDrawDataCell(Rect, Column.Field, State); // pinta o texto padrão
+
+  if (Column.Field.DataType <> ftFloat) and (Column.Field.DataType <> ftInteger) and
+    (Column.Field.DataType <> ftSmallint) then
+    (Sender as TDBGrid).Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText)
+  else
+    (Sender as TDBGrid).Canvas.TextRect(Rect, Rect.Left - 8 + (Rect.Width -
+      (Sender as TDBGrid).Canvas.TextWidth(Column.Field.DisplayText)), Rect.Top + 8, Column.Field.DisplayText);
 end;
 
 procedure TViewPrincipal.DBGrid1TitleClick(Column: TColumn);
@@ -95,19 +160,18 @@ var
   LExisteIndice: boolean;
   LClientDataSet_idx: TClientDataSet;
 begin
-//  if Self.DataSource1.DataSet.IsEmpty then
-//  if TDBGrid(Column).DataSource.DataSet.IsEmpty then
   if Column.Grid.DataSource.DataSet.IsEmpty then
     Exit;
 
   if Assigned(FOldColumn) then
     if FOldColumn <> Column then
-//      LOldColumn.Title.Color := TDBGrid(Column).FixedColor; // Retorna à cor definida no FormCreate
+    begin
       FOldColumn.Title.Color := TDBGrid(Column.Grid).FixedColor; // Retorna à cor definida no FormCreate
+      FOldColumn.Title.Font.Color := clWhite;
+    end;
 
-
-  if (Column.FieldName.Trim.IsEmpty) or (Column.Field.FieldKind in [fkCalculated, fkLookup, fkAggregate]) or
-    (Column.Field.DataType in [ftBlob, ftMemo]) then
+  if (Column.FieldName.Trim.IsEmpty) or (Column.Field.FieldKind in [fkCalculated, fkLookup, fkAggregate]) or (Column.Field.DataType
+    in [ftBlob, ftMemo]) then
     Exit;
 
   LClientDataSet_idx := TClientDataset(Column.Grid.DataSource.DataSet);
@@ -131,12 +195,12 @@ begin
         Options := [ixDescending]; // Descendente
       end;
     LClientDataSet_idx.IndexName := LIndice;
-    Column.Title.Color := clWindowFrame; // Cor do fundo do título selecionado
+    Column.Title.Font.Color := clBlack;
   end
   else
   begin
     LClientDataSet_idx.IndexFieldNames := Column.FieldName; // Ascendente
-    Column.Title.Color := clBlack; // Cor do fundo do título selecionado
+    Column.Title.Color := $00C1609F; //$00BA4B94;//clWhite;//clBlack; // Cor do fundo do título selecionado
   end;
 
   TClientDataset(Column.Grid.DataSource.DataSet).First;
@@ -145,28 +209,35 @@ end;
 
 procedure TViewPrincipal.edtTextoChange(Sender: TObject);
 begin
-  if Trim(edtTexto.Text) = '' then
+  if Trim(Self.edtTexto.Text) = '' then
+  begin
+    if Self.ClientDataSet1.Filtered then
+    begin
+      Self.ClientDataSet1.Filtered := False;
+      Self.ClientDataSet1.Filter := '';
+    end;
+    Self.ClientDataSet1.First;
     Exit;
+  end;
 
-  if rdbLocalizar.Checked then
-    Self.ClientDataSet1.Locate(cbbCampo.Text, edtTexto.Text, [loCaseInsensitive, loPartialKey])
+  if Self.rdbLocalizar.Checked then
+    Self.ClientDataSet1.Locate(Self.cbbCampo.Text, Self.edtTexto.Text, [loCaseInsensitive, loPartialKey])
   else
   begin
     Self.ClientDataSet1.Filtered := False;
-    if cbbCampo.ItemIndex in [0..2, 17, 20, 21] then
-      Self.ClientDataSet1.Filter := Format('%s like %s', [cbbCampo.Text,
-        QuotedStr(AnsiUpperCase(edtTexto.Text) + '%')])
+    if Self.cbbCampo.ItemIndex in [0..2, 17, 20, 21] then
+      Self.ClientDataSet1.Filter := Format('%s like %s', [cbbCampo.Text, QuotedStr(AnsiUpperCase(Self.edtTexto.Text) + '%')])
     else
-      Self.ClientDataSet1.Filter := Format('%s >= %s', [cbbCampo.Text, edtTexto.Text]);
+      Self.ClientDataSet1.Filter := Format('%s >= %s', [Self.cbbCampo.Text, Self.edtTexto.Text]);
     Self.ClientDataSet1.Filtered := True;
   end;
 end;
 
-procedure TViewPrincipal.EstiloDbgrid(const ADbgrid: TDBGrid);
+procedure TViewPrincipal.EstiloDbgrid;
 var
   I: integer;
 begin
-  with ADbgrid do
+  with Self.DBGrid1 do
   begin
     Align := alClient;
     AlignWithMargins := True;
@@ -178,7 +249,7 @@ begin
     Margins.Right := 16;
     Margins.Top := 0;
     Options := Options - [dgEditing, dgColLines, dgRowLines, dgIndicator] + [dgRowSelect, dgAlwaysShowSelection];
-    FixedColor := $008C366E;//clBlue;
+    FixedColor := $008C366E; //clBlue;
     TitleFont.Size := 10;
     TitleFont.Style := [fsBold];
     TitleFont.Color := clWhite;
@@ -200,51 +271,59 @@ begin
 end;
 
 procedure TViewPrincipal.FormCreate(Sender: TObject);
-var
-  LCaminhoArqXml: string;
 begin
   ReportMemoryLeaksOnShutdown := True;
+end;
 
-  LCaminhoArqXml := ExtractFilePath(Application.ExeName) + '\Data\master.xml';
+procedure TViewPrincipal.FormPaint(Sender: TObject);
+begin
+//  Self.ClientDataSet1.RecNo := 2;
+//  if Self.ClientDataSet1.Active then
+//    Self.ClientDataSet1.First;
 
-  if not FileExists(LCaminhoArqXml) then
-  begin
-    ShowMessage('O arquivo ".\Data\master.xml" não foi encontrado. Impossível continuar.');
-    Application.Terminate;
-  end;
-
-  Self.ClientDataSet1.Active := False;
-  try
-    Self.ClientDataSet1.FileName := LCaminhoArqXml;
-    Self.ClientDataSet1.Active := True;
-  except
-    on E: Exception do
-    begin
-      E.Message := 'O arquivo ".\Data\master.xml" não é um arquivo XML válido. Impossível continuar.' + sLineBreak +
-        'Erro: ' + E.Message;
-      Application.Terminate;
-    end;
-  end;
 end;
 
 procedure TViewPrincipal.FormShow(Sender: TObject);
 begin
-  EstiloDbgrid(DBGrid1);
+  Self.OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName) + 'Data';
 
+  if Self.OpenDialog1.Execute then
+  begin
+    Self.ClientDataSet1.Active := False;
+    try
+      Self.ClientDataSet1.FileName := Self.OpenDialog1.FileName;
+      Self.ClientDataSet1.Active := True;
+//      Self.ClientDataSet1.First;
+//      Self.ClientDataSet1.Refresh;
+    except
+      on E: Exception do
+      begin
+        E.Message := 'O arquivo "' + Self.OpenDialog1.FileName + '" não é um arquivo XML válido.' + sLineBreak +
+          'Impossível continuar.' + sLineBreak + 'Erro: ' + E.Message;
+        Application.Terminate;
+      end;
+    end;
+  end
+  else
+    Application.Terminate;
+
+  EstiloDbgrid;
+
+  // REVER ISTO ABAIXO !!!
   Self.ClientDataSet1.GetFieldNames(Self.cbbCampo.Items); // Popula o Combo
   Self.cbbCampo.ItemIndex := 0;
 end;
 
 procedure TViewPrincipal.rdbFiltrarClick(Sender: TObject);
 begin
-  rdbLocalizar.Checked := False;
-  edtTextoChange(edtTexto);
+  Self.rdbLocalizar.Checked := False;
+  Self.edtTextoChange(edtTexto);
 end;
 
 procedure TViewPrincipal.rdbLocalizarClick(Sender: TObject);
 begin
-  rdbFiltrar.Checked := False;
-  edtTextoChange(edtTexto);
+  Self.rdbFiltrar.Checked := False;
+  Self.edtTextoChange(edtTexto);
 end;
 
 end.
