@@ -37,7 +37,7 @@ Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos da
 # Referências
 Vários dos recursos deste DBGrid foram obtidos em vários sites, com algumas adaptações minhas. Esses recursos foram divulgados há mais de 10 anos por vários programadores e podem ser encontrados na internet sem maiores dificuldades.
 
-Autor
+# Autor
 
 Sérgio Carlos Guimarães Alves
 
