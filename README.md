@@ -32,7 +32,7 @@ Ao selecionar uma linha, todos os campos da linha ficam em **negrito** e a linha
 [...]
 
 # Tecnologia
-Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos dados contidos em um arquivo XML e os exibe na DBGrid, simulando um acesso aos dados de uma tabela.
+Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos dados contidos em um arquivo XML e os exibe na DBGrid, simulando um acesso aos dados de uma tabela de um banco de dados.
 
 # Referências
 Vários dos recursos deste DBGrid foram obtidos em vários sites, com algumas adaptações minhas. Esses recursos foram divulgados há mais de 10 anos por vários programadores e podem ser encontrados na internet sem maiores dificuldades.
