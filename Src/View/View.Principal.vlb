@@ -1,9 +1,6 @@
 ﻿[ClientDataSet1]
 Coordinates=10,10,110,564
 
-[cbbCampo]
-Coordinates=130,10,101,124
-
 [pnlSomaBETA]
 Coordinates=1018,652,98,58
 
@@ -37,9 +34,6 @@ Coordinates=823,652,65,58
 [ClientDataSet1P_E_RATIO]
 Coordinates=670,111,171,36
 
-[grd1]
-Coordinates=374,652,49,58
-
 [ClientDataSet1SAFETY]
 Coordinates=670,166,151,36
 
@@ -58,9 +52,6 @@ Coordinates=670,331,163,36
 [ClientDataSet1YRL_LOW]
 Coordinates=670,386,162,36
 
-[rdbFiltrar]
-Coordinates=353,720,67,36
-
 [ClientDataSet1RANK]
 Coordinates=670,496,137,36
 
@@ -69,9 +60,6 @@ Coordinates=652,551,198,36
 
 [pnlSomaYRL_LOW]
 Coordinates=10,652,126,58
-
-[grdPesquisar]
-Coordinates=241,10,90,58
 
 [lblSomaP_E_RATIO]
 Coordinates=537,652,131,58
@@ -112,9 +100,6 @@ Coordinates=89,584,114,58
 [ClientDataSet1CUR_PRICE]
 Coordinates=670,771,175,36
 
-[lblCombo]
-Coordinates=10,584,69,58
-
 [ClientDataSet1RISK]
 Coordinates=670,826,131,36
 
@@ -124,14 +109,8 @@ Coordinates=358,584,125,58
 [grdRodape]
 Coordinates=824,10,78,58
 
-[grpPesquisar]
-Coordinates=10,720,90,58
-
 [DataSource1]
 Coordinates=135,77,89,36
-
-[rdbLocalizar]
-Coordinates=184,720,85,36
 
 [ClientDataSet1CO_NAME]
 Coordinates=888,56,164,36
@@ -164,9 +143,21 @@ Coordinates=888,331,205,36
 Coordinates=888,386,165,36
 
 []
-Coordinates=110,720,64,36
+Coordinates=374,652,49,58
 Visible=True
 
 [OpenDialog1]
 Coordinates=572,918,74,36
+
+[grdLocalizar]
+Coordinates=241,10,90,58
+
+[grpLocalizar]
+Coordinates=10,720,90,58
+
+[lblColuna]
+Coordinates=10,584,69,58
+
+[cbbColuna]
+Coordinates=130,10,101,124
 
