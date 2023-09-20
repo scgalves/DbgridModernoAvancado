@@ -1,8 +1,8 @@
 # DbgridModernoAvancado
-Projeto em Delphi demonstrando um DBGrid com um layout moderno e vários recursos.
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/scgalves/DbgridModernoAvancado/blob/main/LICENSE)
 
-# Tecnologia
-Delphi 11.3 Alexandria. O componente ClientDataSet faz acesso aos dados contidos em um arquivo XML.
+# Sobre o projeto
+Projeto em Delphi demonstrando um DBGrid (padrão da paleta de componentes) com um layout moderno e vários recursos. O projeto só foi testado no Delphi versão 11.3. Não é possível saber como seria o comportamento em uma versão diferente.
 
 # Recursos
 ## Ordenação crescente ou descrescente dos registros
@@ -27,8 +27,14 @@ Ao selecionar uma linha, todos os campos da linha ficam em **negrito** e a linha
 ## Exportação para o Excel
 É possível exportar os dados da DBGrid para um arquivo do Excel, formato XLSX. OBS.: EM FASE DE TESTES.
 
-# Imagem
+# Layout
 [...]
+
+# Tecnologia
+Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos dados contidos em um arquivo XML e os exibe na DBGrid, simulando um acesso aos dados de uma tabela.
+
+# Referências
+Vários dos recursos deste DBGrid foram obtidos em vários sites, com algumas adaptações minhas. Esses recursos foram divulgados há mais de 10 anos por vários programadores e podem ser encontrados na internet sem maiores dificuldades.
 
 Autor
 
