@@ -2,7 +2,7 @@
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/scgalves/DbgridModernoAvancado/blob/main/LICENSE)
 
 # Sobre o projeto
-Projeto em Delphi demonstrando um DBGrid padrão da paleta de componentes, com um layout moderno e vários recursos. O projeto só foi testado no Delphi 11.3; não é possível saber como seria o comportamento em uma versão diferente.
+Projeto em Delphi demonstrando uma DBGrid padrão da paleta de componentes, com um layout moderno e vários recursos.
 
 # Recursos
 ## Ordenação crescente ou descrescente dos registros
@@ -32,10 +32,10 @@ Ao selecionar uma linha, todos os campos da linha ficam em **negrito** e a linha
 [...]
 
 # Tecnologia
-Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos dados contidos em um arquivo XML e os exibe na DBGrid, simulando um acesso aos dados de uma tabela de um banco de dados.
+Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos dados contidos em um arquivo XML e os exibe na DBGrid, simulando um acesso aos dados de uma tabela de um banco de dados. O projeto só foi testado no Delphi 11.3; não é possível saber como seria o comportamento em uma versão diferente.
 
 # Referências
-Vários dos recursos deste DBGrid foram obtidos em vários sites, com algumas adaptações minhas. Esses recursos foram divulgados há mais de 10 anos por vários programadores e podem ser encontrados na internet sem maiores dificuldades.
+Vários dos recursos desta DBGrid foram obtidos em vários sites, com algumas adaptações minhas. Esses recursos foram largamente divulgados há mais de 10 anos por vários programadores e podem ser encontrados na internet sem maiores dificuldades.
 
 # Autor
 
