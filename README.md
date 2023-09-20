@@ -2,7 +2,7 @@
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/scgalves/DbgridModernoAvancado/blob/main/LICENSE)
 
 # Sobre o projeto
-Projeto em Delphi demonstrando um DBGrid (padrão da paleta de componentes) com um layout moderno e vários recursos. O projeto só foi testado no Delphi versão 11.3. Não é possível saber como seria o comportamento em uma versão diferente.
+Projeto em Delphi demonstrando um DBGrid padrão da paleta de componentes, com um layout moderno e vários recursos. O projeto só foi testado no Delphi 11.3; não é possível saber como seria o comportamento em uma versão diferente.
 
 # Recursos
 ## Ordenação crescente ou descrescente dos registros
