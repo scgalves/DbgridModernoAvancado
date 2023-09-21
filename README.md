@@ -26,7 +26,7 @@ A altura das linhas foi aumentada, para melhorar a visualização dos registros.
 Ao selecionar uma linha, todos os campos da linha ficam em **negrito** e a linha fica num tom de cor um pouco mais escuro.
 
 # Layout
-[...]
+https://github.com/scgalves/DbgridModernoAvancado/Presentation/presentation-1.gif
 
 # Tecnologia
 Delphi versão 11.3 CE Alexandria. Um componente ClientDataSet faz acesso aos dados contidos em um arquivo XML e os exibe na DBGrid, simulando um acesso aos dados de uma tabela de um banco de dados. O projeto só foi testado no Delphi 11.3; não é possível saber como seria o comportamento em uma versão diferente.
