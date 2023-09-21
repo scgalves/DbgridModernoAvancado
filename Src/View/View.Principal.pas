@@ -1,3 +1,5 @@
+{Alguns dos recursos aqui aplicados podem ser utilizados em forms herdados a partir deste, para que os herdados
+já contemplem estes recursos.}
 unit View.Principal;
 
 interface
@@ -5,7 +7,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Data.DB, Datasnap.DBClient, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.Mask, MidasLib, System.Win.ComObj;
+  Vcl.Mask, MidasLib, System.StrUtils;
 
 type
   TViewPrincipal = class(TForm)
@@ -33,8 +35,8 @@ type
     ClientDataSet1RISK: TStringField;
     ClientDataSet1SomaCUR_PRICE: TAggregateField;
     ClientDataSet1CountSymbol: TAggregateField;
-    grpLocalizar: TGroupBox;
-    grdLocalizar: TGridPanel;
+    grpFiltrar: TGroupBox;
+    grdFiltrar: TGridPanel;
     edtTexto: TLabeledEdit;
     pnlCombo: TPanel;
     lblColuna: TLabel;
@@ -64,7 +66,6 @@ type
     OpenDialog1: TOpenDialog;
     pnlDados: TPanel;
     DBGrid1: TDBGrid;
-    btnExportarExcel: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -74,7 +75,8 @@ type
     procedure edtTextoChange(Sender: TObject);
     procedure cbbColunaChange(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
-    procedure btnExportarExcelClick(Sender: TObject);
+    procedure DBGrid1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure DBGrid1MouseLeave(Sender: TObject);
   private
     /// <summary>Guarda a referência da última coluna que foi clicada.</summary>
     FOldColumn: TColumn;
@@ -94,38 +96,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TViewPrincipal.btnExportarExcelClick(Sender: TObject);
-var
-  LLinha,
-    LColuna: Word;
-  LQtdeRegistros: Cardinal;
-  LPlanilha: Variant;
-  LValorCampo: string;
-begin
-  LPlanilha:= CreateoleObject('Excel.Application');
-  LPlanilha.WorkBooks.Add(1);
-  LPlanilha.visible := True;
-
-  Self.ClientDataSet1.First;
-  LQtdeRegistros := Self.ClientDataSet1.RecordCount;
-  for LLinha := 0 to Pred(LQtdeRegistros) do
-  begin
-    for LColuna := 1 to Self.ClientDataSet1.FieldCount do
-    begin
-      LValorCampo := Self.ClientDataSet1.Fields[LColuna - 1].AsString;
-      LPlanilha.Cells[LLinha + 2, LColuna] := LValorCampo;
-    end;
-    Self.ClientDataSet1.Next;
-  end;
-
-  for LColuna := 1 to Self.ClientDataSet1.FieldCount do
-  begin
-    LValorCampo := Self.ClientDataSet1.Fields[LColuna - 1].DisplayLabel;
-    LPlanilha.Cells[1, LColuna] := LValorCampo;
-  end;
-  LPlanilha.columns.Autofit;
-end;
 
 procedure TViewPrincipal.cbbColunaChange(Sender: TObject);
 begin
@@ -148,6 +118,13 @@ begin
     (Sender as TDBGrid).Canvas.Brush.Color := cl3DLight
   else
     (Sender as TDBGrid).Canvas.Brush.Color := clWhite;
+  // Coluna PRICE_CHG
+  if Column.FieldName = 'PRICE_CHG' then
+    if Column.Field.AsFloat < 0 then
+    begin // Fonte em vermelho e negrito
+      (Sender as TDBGrid).Canvas.Font.Color := clRed;
+      (Sender as TDBGrid).Canvas.Font.Style := [fsBold];
+    end;
   // Linha selecionada
   if (gdSelected in State) then
   begin
@@ -168,11 +145,28 @@ begin
       Rect.Top + 8, Column.Field.DisplayText);
 end;
 
+procedure TViewPrincipal.DBGrid1MouseLeave(Sender: TObject);
+begin
+  Screen.Cursor := crDefault;
+end;
+
+procedure TViewPrincipal.DBGrid1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+var
+  LMousePt: TGridcoord;
+begin
+  LMousePt := DbGrid1.MouseCoord(x, y);
+  if LMousePt.y = 0 then
+    Screen.Cursor := crHandPoint
+  else
+    Screen.Cursor := crDefault;
+end;
+
 procedure TViewPrincipal.DBGrid1TitleClick(Column: TColumn);
 var
   LIndice: string;
   LExisteIndice: boolean;
   LClientDataSet_idx: TClientDataSet;
+  LBookMark: TBookmark;
 begin
   if Column.Grid.DataSource.DataSet.IsEmpty then
     Exit;
@@ -188,36 +182,44 @@ begin
     (Column.Field.DataType in [ftBlob, ftMemo]) then
     Exit;
 
-  LClientDataSet_idx := TClientDataset(Column.Grid.DataSource.DataSet);
-  // Indexação da coluna
-  if LClientDataSet_idx.IndexFieldNames = Column.FieldName then
-  begin
-    LIndice := AnsiUpperCase(Column.FieldName + '_INV');
+  LBookMark := TDBGrid(Column.Grid).DataSource.DataSet.GetBookmark;
+  TDBGrid(Column.Grid).DataSource.DataSet.DisableControls;
+  try
+    LClientDataSet_idx := TClientDataset(Column.Grid.DataSource.DataSet);
+    // Indexação da coluna
+    if LClientDataSet_idx.IndexFieldNames = Column.FieldName then
+    begin
+      LIndice := AnsiUpperCase(Column.FieldName + '_INV');
 
-    try
-      LClientDataSet_idx.IndexDefs.Find(LIndice);
-      LExisteIndice := True;
-    except
-      LExisteIndice := False;
+      try
+        LClientDataSet_idx.IndexDefs.Find(LIndice);
+        LExisteIndice := True;
+      except
+        LExisteIndice := False;
+      end;
+
+      if not LExisteIndice then
+        with LClientDataSet_idx.IndexDefs.AddIndexDef do
+        begin
+          Name := LIndice;
+          Fields := Column.FieldName;
+          Options := [ixDescending]; // Descendente
+        end;
+      LClientDataSet_idx.IndexName := LIndice;
+      Column.Title.Font.Color := clBlack;
+    end
+    else
+    begin
+      LClientDataSet_idx.IndexFieldNames := Column.FieldName; // Ascendente
+      Column.Title.Color := $00C1609F;
     end;
 
-    if not LExisteIndice then
-      with LClientDataSet_idx.IndexDefs.AddIndexDef do
-      begin
-        Name := LIndice;
-        Fields := Column.FieldName;
-        Options := [ixDescending]; // Descendente
-      end;
-    LClientDataSet_idx.IndexName := LIndice;
-    Column.Title.Font.Color := clBlack;
-  end
-  else
-  begin
-    LClientDataSet_idx.IndexFieldNames := Column.FieldName; // Ascendente
-    Column.Title.Color := $00C1609F;
+    TClientDataset(Column.Grid.DataSource.DataSet).First; // Para acionar novamente o DataChange
+  finally
+    TDBGrid(Column.Grid).DataSource.DataSet.GotoBookmark(LBookMark); // Volta para o registro previamente selecionado
+    TDBGrid(Column.Grid).DataSource.DataSet.FreeBookmark(LBookMark);
+    TDBGrid(Column.Grid).DataSource.DataSet.EnableControls;
   end;
-
-  TClientDataset(Column.Grid.DataSource.DataSet).First;
   FOldColumn := Column;
 end;
 
@@ -278,9 +280,18 @@ begin
 end;
 
 procedure TViewPrincipal.FormShow(Sender: TObject);
+var
+  LCaminhoExe: string;
 begin
-  Self.OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName) + 'Data';
+  LCaminhoExe := ExtractFilePath(Application.ExeName);
+  if ContainsText(LCaminhoExe, '\Debug') then
+    LCaminhoExe := StringReplace(LCaminhoExe, '\Debug', '', []);
+  if ContainsText(LCaminhoExe, '\Release') then
+    LCaminhoExe := StringReplace(LCaminhoExe, '\Release', '', []);
+  if ContainsText(LCaminhoExe, '\Win32') then
+    LCaminhoExe := StringReplace(LCaminhoExe, '\Win32', '', []);
 
+  Self.OpenDialog1.InitialDir := LCaminhoExe + 'Data';
   if Self.OpenDialog1.Execute then
   begin
     Self.ClientDataSet1.Active := False;
@@ -305,8 +316,7 @@ begin
 
   EstiloDbgrid;
 
-  Self.cbbColuna.ItemIndex := 0;
-  Self.ClientDataSet1.First;
+  Self.ClientDataSet1.First; // Para acionar novamente o DataChange
 end;
 
 end.

@@ -45,7 +45,7 @@ object ViewPrincipal: TViewPrincipal
       item
         Column = 0
         ColumnSpan = 3
-        Control = grpLocalizar
+        Control = grpFiltrar
         Row = 0
       end>
     RowCollection = <
@@ -53,8 +53,8 @@ object ViewPrincipal: TViewPrincipal
         Value = 100.000000000000000000
       end>
     TabOrder = 0
-    ExplicitWidth = 962
-    object grpLocalizar: TGroupBox
+    ExplicitWidth = 966
+    object grpFiltrar: TGroupBox
       AlignWithMargins = True
       Left = 15
       Top = 12
@@ -65,10 +65,10 @@ object ViewPrincipal: TViewPrincipal
       Margins.Right = 0
       Margins.Bottom = 0
       Align = alClient
-      Caption = 'Localizar'
+      Caption = 'Filtrar registros'
       TabOrder = 0
-      ExplicitWidth = 706
-      object grdLocalizar: TGridPanel
+      ExplicitWidth = 710
+      object grdFiltrar: TGridPanel
         Left = 2
         Top = 17
         Width = 708
@@ -83,7 +83,7 @@ object ViewPrincipal: TViewPrincipal
             Value = 33.333333333333340000
           end
           item
-            Value = 33.333333333333340000
+            Value = 33.333333333333310000
           end>
         ControlCollection = <
           item
@@ -102,7 +102,7 @@ object ViewPrincipal: TViewPrincipal
             Value = 100.000000000000000000
           end>
         TabOrder = 0
-        ExplicitWidth = 702
+        ExplicitWidth = 706
         object edtTexto: TLabeledEdit
           AlignWithMargins = True
           Left = 12
@@ -121,7 +121,7 @@ object ViewPrincipal: TViewPrincipal
           TabOrder = 0
           Text = ''
           OnChange = edtTextoChange
-          ExplicitWidth = 210
+          ExplicitWidth = 447
         end
         object pnlCombo: TPanel
           Left = 472
@@ -131,8 +131,8 @@ object ViewPrincipal: TViewPrincipal
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 356
-          ExplicitWidth = 353
+          ExplicitLeft = 471
+          ExplicitWidth = 235
           object lblColuna: TLabel
             AlignWithMargins = True
             Left = 12
@@ -158,7 +158,9 @@ object ViewPrincipal: TViewPrincipal
             Margins.Bottom = 0
             Align = alTop
             Style = csOwnerDrawFixed
+            ItemIndex = 0
             TabOrder = 0
+            Text = 'SYMBOL'
             OnChange = cbbColunaChange
             Items.Strings = (
               'SYMBOL'
@@ -166,7 +168,7 @@ object ViewPrincipal: TViewPrincipal
               'RATING'
               'RCMNDATION'
               'RISK')
-            ExplicitWidth = 210
+            ExplicitWidth = 211
           end
         end
       end
@@ -186,28 +188,25 @@ object ViewPrincipal: TViewPrincipal
     BevelOuter = bvNone
     ColumnCollection = <
       item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end
       item
-        Value = 12.500000000000000000
-      end
-      item
-        Value = 12.500000000000000000
+        Value = 14.285714285714290000
       end>
     ControlCollection = <
       item
@@ -244,24 +243,19 @@ object ViewPrincipal: TViewPrincipal
         Column = 6
         Control = pnlSomaBETA
         Row = 0
-      end
-      item
-        Column = 7
-        Control = btnExportarExcel
-        Row = 0
       end>
     RowCollection = <
       item
         Value = 100.000000000000000000
       end>
     TabOrder = 1
-    ExplicitTop = 567
-    ExplicitWidth = 962
+    ExplicitTop = 572
+    ExplicitWidth = 966
     object dbnvgr1: TDBNavigator
       AlignWithMargins = True
       Left = 15
       Top = 6
-      Width = 102
+      Width = 120
       Height = 29
       Margins.Left = 15
       Margins.Top = 6
@@ -286,25 +280,23 @@ object ViewPrincipal: TViewPrincipal
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      ExplicitLeft = 4
-      ExplicitTop = 12
-      ExplicitWidth = 129
+      ExplicitWidth = 102
     end
     object pnlQtdeRegistros: TPanel
-      Left = 121
+      Left = 139
       Top = 0
-      Width = 122
+      Width = 138
       Height = 53
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 137
-      ExplicitWidth = 138
+      ExplicitLeft = 121
+      ExplicitWidth = 120
       object lblQtdeRegistros: TLabel
         AlignWithMargins = True
         Left = 12
         Top = 2
-        Width = 98
+        Width = 114
         Height = 15
         Margins.Left = 12
         Margins.Top = 2
@@ -312,14 +304,13 @@ object ViewPrincipal: TViewPrincipal
         Margins.Bottom = 0
         Align = alTop
         Caption = 'Qtde. Registros'
-        ExplicitTop = 8
         ExplicitWidth = 80
       end
       object dbtxtQtdeRegistros: TDBText
         AlignWithMargins = True
         Left = 12
         Top = 19
-        Width = 98
+        Width = 114
         Height = 17
         Margins.Left = 12
         Margins.Top = 2
@@ -340,20 +331,20 @@ object ViewPrincipal: TViewPrincipal
       end
     end
     object pnlSomaCUR_PRICE: TPanel
-      Left = 243
+      Left = 277
       Top = 0
-      Width = 121
+      Width = 139
       Height = 53
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitLeft = 275
-      ExplicitWidth = 137
+      ExplicitLeft = 241
+      ExplicitWidth = 121
       object lblSomaCUR_PRICE: TLabel
         AlignWithMargins = True
         Left = 12
         Top = 2
-        Width = 97
+        Width = 115
         Height = 15
         Margins.Left = 12
         Margins.Top = 2
@@ -361,14 +352,13 @@ object ViewPrincipal: TViewPrincipal
         Margins.Bottom = 0
         Align = alTop
         Caption = 'Total CUR_PRICE'
-        ExplicitTop = 8
         ExplicitWidth = 87
       end
       object dbtxtSomaCUR_PRICE: TDBText
         AlignWithMargins = True
         Left = 12
         Top = 19
-        Width = 97
+        Width = 115
         Height = 17
         Margins.Left = 12
         Margins.Top = 2
@@ -389,20 +379,20 @@ object ViewPrincipal: TViewPrincipal
       end
     end
     object pnlSomaYRL_LOW: TPanel
-      Left = 485
+      Left = 554
       Top = 0
-      Width = 121
+      Width = 139
       Height = 53
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 3
-      ExplicitLeft = 550
-      ExplicitWidth = 137
+      ExplicitLeft = 483
+      ExplicitWidth = 121
       object lblSomaYRL_LOW: TLabel
         AlignWithMargins = True
         Left = 12
         Top = 2
-        Width = 97
+        Width = 115
         Height = 15
         Margins.Left = 12
         Margins.Top = 2
@@ -410,13 +400,13 @@ object ViewPrincipal: TViewPrincipal
         Margins.Bottom = 0
         Align = alTop
         Caption = 'Total YRL_LOW'
-        ExplicitWidth = 115
+        ExplicitWidth = 79
       end
       object dbtxtSomaYRL_LOW: TDBText
         AlignWithMargins = True
         Left = 12
         Top = 19
-        Width = 97
+        Width = 115
         Height = 17
         Margins.Left = 12
         Margins.Top = 2
@@ -437,20 +427,20 @@ object ViewPrincipal: TViewPrincipal
       end
     end
     object pnlSomaYRL_HIGH: TPanel
-      Left = 364
+      Left = 416
       Top = 0
-      Width = 121
+      Width = 138
       Height = 53
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 4
-      ExplicitLeft = 412
-      ExplicitWidth = 138
+      ExplicitLeft = 362
+      ExplicitWidth = 121
       object lblSomaYRL_HIGH: TLabel
         AlignWithMargins = True
         Left = 12
         Top = 2
-        Width = 97
+        Width = 114
         Height = 15
         Margins.Left = 12
         Margins.Top = 2
@@ -458,14 +448,13 @@ object ViewPrincipal: TViewPrincipal
         Margins.Bottom = 0
         Align = alTop
         Caption = 'Total YRL_HIGH'
-        ExplicitTop = 8
         ExplicitWidth = 82
       end
       object dbtxtSomaYRL_HIGH: TDBText
         AlignWithMargins = True
         Left = 12
         Top = 19
-        Width = 97
+        Width = 114
         Height = 17
         Margins.Left = 12
         Margins.Top = 2
@@ -486,20 +475,20 @@ object ViewPrincipal: TViewPrincipal
       end
     end
     object pnlSomaP_E_RATIO: TPanel
-      Left = 606
+      Left = 693
       Top = 0
-      Width = 122
+      Width = 138
       Height = 53
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 5
-      ExplicitLeft = 687
-      ExplicitWidth = 138
+      ExplicitLeft = 604
+      ExplicitWidth = 120
       object lblSomaP_E_RATIO: TLabel
         AlignWithMargins = True
         Left = 12
         Top = 2
-        Width = 98
+        Width = 114
         Height = 15
         Margins.Left = 12
         Margins.Top = 2
@@ -507,13 +496,13 @@ object ViewPrincipal: TViewPrincipal
         Margins.Bottom = 0
         Align = alTop
         Caption = 'Total P_E_RATIO'
-        ExplicitWidth = 114
+        ExplicitWidth = 83
       end
       object dbtxtSomaP_E_RATIO: TDBText
         AlignWithMargins = True
         Left = 12
         Top = 19
-        Width = 98
+        Width = 114
         Height = 17
         Margins.Left = 12
         Margins.Top = 2
@@ -534,20 +523,20 @@ object ViewPrincipal: TViewPrincipal
       end
     end
     object pnlSomaBETA: TPanel
-      Left = 728
+      Left = 831
       Top = 0
-      Width = 121
+      Width = 139
       Height = 53
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 6
-      ExplicitLeft = 825
-      ExplicitWidth = 137
+      ExplicitLeft = 724
+      ExplicitWidth = 121
       object lblSomaBETA: TLabel
         AlignWithMargins = True
         Left = 12
         Top = 2
-        Width = 97
+        Width = 115
         Height = 15
         Margins.Left = 12
         Margins.Top = 2
@@ -555,13 +544,13 @@ object ViewPrincipal: TViewPrincipal
         Margins.Bottom = 0
         Align = alTop
         Caption = 'Total BETA'
-        ExplicitWidth = 115
+        ExplicitWidth = 54
       end
       object dbtxtSomaBETA: TDBText
         AlignWithMargins = True
         Left = 12
         Top = 19
-        Width = 97
+        Width = 115
         Height = 17
         Margins.Left = 12
         Margins.Top = 2
@@ -581,28 +570,6 @@ object ViewPrincipal: TViewPrincipal
         ExplicitWidth = 65
       end
     end
-    object btnExportarExcel: TButton
-      AlignWithMargins = True
-      Left = 853
-      Top = 6
-      Width = 102
-      Height = 29
-      Hint = 'Exportar para XLS'
-      Margins.Left = 4
-      Margins.Top = 6
-      Margins.Right = 15
-      Margins.Bottom = 18
-      Align = alClient
-      Caption = 'Exp. Excel'
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 7
-      OnClick = btnExportarExcelClick
-      ExplicitLeft = 888
-      ExplicitTop = 16
-      ExplicitWidth = 75
-      ExplicitHeight = 25
-    end
   end
   object pnlDados: TPanel
     Left = 0
@@ -612,8 +579,8 @@ object ViewPrincipal: TViewPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitWidth = 962
-    ExplicitHeight = 462
+    ExplicitWidth = 966
+    ExplicitHeight = 452
     object DBGrid1: TDBGrid
       AlignWithMargins = True
       Left = 15
@@ -641,6 +608,8 @@ object ViewPrincipal: TViewPrincipal
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
       OnDrawColumnCell = DBGrid1DrawColumnCell
+      OnMouseLeave = DBGrid1MouseLeave
+      OnMouseMove = DBGrid1MouseMove
       OnTitleClick = DBGrid1TitleClick
       Columns = <
         item
@@ -726,7 +695,7 @@ object ViewPrincipal: TViewPrincipal
         item
           Expanded = False
           FieldName = 'RISK'
-          Width = 40
+          Width = 50
           Visible = True
         end>
     end
