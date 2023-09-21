@@ -17,16 +17,13 @@ Ao clicar pela segunda vez na mesma coluna:
 Ao clicar em um outro título de coluna, o título da coluna anteriormente selecionada terá suas cores restauradas.
 
 ## Linhas zebradas
-Cada linha tem uma cor diferente, para facilitar a visualização dos registros.
+Cada linha tem uma cor diferente, para melhorar a visualização dos registros.
 
 ## Maior altura das linhas
-Maior espaço vertical nas linhas da DBGrid, para facilitar a visualização dos registros.
+A altura das linhas foi aumentada, para melhorar a visualização dos registros.
 
 ## Linha selecionada em destaque
 Ao selecionar uma linha, todos os campos da linha ficam em **negrito** e a linha fica num tom de cor um pouco mais escuro.
-
-## Exportação para o Excel
-É possível exportar os dados da DBGrid para um arquivo do Excel, formato XLSX. OBS.: EM FASE DE TESTES.
 
 # Layout
 [...]
