@@ -12,7 +12,7 @@ Ao clicar pela primeira vez no título de uma coluna:
 
 Ao clicar pela segunda vez na mesma coluna:
 * A cor da fonte do título da coluna muda de cor, para identificar que a coluna foi novamente selecionada.
-* Os registros serão ordenadas pela coluna selecionada, de forma **Decrescente**.
+* Os registros serão ordenados pela coluna selecionada, de forma **Decrescente**.
 
 Ao clicar em um outro título de coluna, o título da coluna anteriormente selecionada terá suas cores restauradas.
 
