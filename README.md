@@ -5,7 +5,7 @@
 Projeto em Delphi demonstrando uma DBGrid padrão da paleta de componentes, com um layout moderno e vários recursos.
 
 # Recursos
-## Ordenação crescente ou descrescente dos registros
+## Ordenação crescente ou decrescente dos registros
 Ao clicar pela primeira vez no título de uma coluna:
 * O título muda de cor, para identificar que a coluna foi selecionada.
 * Os registros serão ordenados pela coluna selecionada, de forma **Crescente**.
